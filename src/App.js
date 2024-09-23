@@ -1,15 +1,18 @@
 //App.js
 import React from 'react';
+import Navegacion from './componentes/Navegacion';
 import Producto from './componentes/Producto';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row } from 'reactstrap';
 import './App.css';
+
 //import logo from './logo.svg';
 
 class App extends React.Component {
   render () {
     return (
       <Container>
+        <Navegacion titulo="Mi primer sitio de compras en React"/>
         <Row>
             <Producto
               titulo="Audífono Wf1000XM5/Bcuc Sony"
