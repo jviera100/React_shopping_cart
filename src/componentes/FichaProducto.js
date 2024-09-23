@@ -1,13 +1,14 @@
+//FichaProducto.js
 import React from "react";
 import { Modal, Button, Container, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 class FichaProducto extends React.Component{
     constructor(props){
-        super();
+        super(props);
         this.state = {
             modal:false
         };
-        this.toggle = this.toggle.bind(this);
+        this.toogle = this.toogle.bind(this);
     }
     toogle(){
         this.setState(prevState => ({
@@ -17,7 +18,7 @@ class FichaProducto extends React.Component{
     render(){
         return(
             <Container>
-                <Button onClick={this.toggle}>ver ficha</Button>
+                <Button onClick={this.toogle}>ver ficha</Button>
                 <Modal isOpen={this.state.modal}>
                     <ModalHeader></ModalHeader>
                     <ModalBody></ModalBody>
