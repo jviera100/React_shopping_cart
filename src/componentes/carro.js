@@ -17,6 +17,21 @@ class Carro extends React.Component{
             popoverOpen: !prevState.popoverOpen
         }));
     } 
+    sumaTotal(){
+        let Total = 0;
+        let sumaTotal = this.state.listaCarrito.map(
+            (listaCarrito) =>{
+                Total += parseInt(listaCarrito.precio) * 1000;
+            });
+        return(Total);
+    }
+    // sumaTotal(){
+    //     let Total = 0;
+    //     this.state.listaCarrito.forEach((listaCarrito) => {
+    //         Total += parseInt(listaCarrito.precio) * 1000;
+    //     });
+    //     return Total;
+    // }
     render(){
         const arregloCarrito = this.state.listaCarrito.map(
             (listaCarrito, i) =>{
@@ -33,7 +48,7 @@ class Carro extends React.Component{
             <div>
                 <Button id="Popover1" color="info">
                     <span className="material-simbols-outlined">shopping_cart</span>
-                    <Badge color="secondary">{arregloCarrito.length}</Badge>
+                    <Badge color="secondary" id="badge1">{listaCarrito.length}</Badge>
                 </Button>
                 <Popover target="Popover1" placement="bottom" isOpen={this.state.popoverOpen} toggle={this.toogle}>
                     <PopoverHeader>Listado de compras</PopoverHeader>
@@ -49,6 +64,11 @@ class Carro extends React.Component{
                             <tbody>
                                 {arregloCarrito}                                
                             </tbody>
+                            <tfoot>
+                                <td>Total: </td>
+                                <td></td>
+                                <td>{Intl.NumberFormat("de-DE").format(this.sumaTotal())} CLP</td>
+                            </tfoot>
                         </Table>
                     </PopoverBody>
                 </Popover>

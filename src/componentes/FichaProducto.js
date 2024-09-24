@@ -8,7 +8,8 @@ class FichaProducto extends React.Component{
         super(props);
         this.state = {
             modal:false,
-            listaCarrito
+            listaCarrito,
+            stock: props.props.stock
         };
         this.toogle = this.toogle.bind(this);
         this.agregarCarrito = this.agregarCarrito.bind(this);
@@ -25,8 +26,18 @@ class FichaProducto extends React.Component{
             "precio": this.props.props.precio
         });
         this.setState(prevState => ({
-            modal: !prevState.modal
+            modal: !prevState.modal,            
         }));
+        if(this.state.stock != 0){
+            this.setState(prevState => ({                
+                stock: prevState.stock -1
+            }))
+        }else{
+            alert('STOCK AGOTADO')
+
+        }
+        const badge = document.getElementById("Badge1");
+        badge.innerText = listaCarrito.length;
     }     
     render(){
         return(
@@ -39,7 +50,7 @@ class FichaProducto extends React.Component{
                         <p>El detalle del producto seleccionado es el siguiente: </p>
                         {this.props.props.descripcion}
                         <p>Este producto tiene un valor de <b>{this.props.props.precio}</b> pesos.</p>
-                        <p>Hay <b>{this.props.props.stock}</b> unidades de este producto disponibles.</p>
+                        <p>Hay <b>{this.state.stock}</b> unidades de este producto disponibles.</p>
                     </ModalBody>
                     <ModalFooter className="modalFooter">
                         <Button color="primary" onClick={this.agregarCarrito}>Agregar al carrito</Button>
